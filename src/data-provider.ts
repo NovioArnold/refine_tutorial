@@ -2,10 +2,11 @@ import { CrudFilters, DataProvider, HttpError } from "@pankod/refine-core";
 import { stringify } from "querystring";
 import axios from "axios";
 
+
 // Error handling with axios interceptors
 const axiosInstance = axios.create();
 
-axiosInstance.interceptors.response.use(
+axiosInstance.interceptors.response.use(x
     (response) => {
         return response;
     },
@@ -20,9 +21,7 @@ axiosInstance.interceptors.response.use(
 );
 
 export const dataProvider  = (apiUrl: string): DataProvider => ({
-    //methods
-    
-    getList: async ({resource}) => {
+    getList : async ({resource, pagination, sort}) => {
         const url = `${apiUrl}/${resource}`;
 
         const { current = 1, pageSize = 10} = pagination ?? {};
@@ -44,7 +43,9 @@ export const dataProvider  = (apiUrl: string): DataProvider => ({
 
             
 
-        const { data, headers } = await axiosInstance.get(`${url}?${stringify(query)}`);
+        const { data, headers } = await axiosInstance.get(
+            `${url}?${stringify(query)}`,
+            );
 
         const total = headers["x-total-count"];
 
