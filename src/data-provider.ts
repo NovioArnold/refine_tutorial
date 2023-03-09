@@ -22,6 +22,13 @@ axiosInstance.interceptors.response.use(
 );
 
 export const dataProvider  = (apiUrl: string): DataProvider => ({
+    
+    create : async ({resource, variables}) => {
+        const url = `${apiUrl}/${resource}`;
+        const { data } = await axiosInstance.post(url, variables);
+        return { data };
+    },
+
     const generateFilters = (filters?: CrudFilters) => {
         const queryFilters: { [key: string]: string } = {};
       
