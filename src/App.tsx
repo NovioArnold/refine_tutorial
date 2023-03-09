@@ -14,8 +14,9 @@ import {
 } from "@pankod/refine-mui";
 
 import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import DataProvider from "@pankod/refine-simple-rest";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
+import { dataProvider } from "./rest-data-provider"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
         <RefineSnackbarProvider>
           <Refine
+            //dataProvider={dataProvider}
             notificationProvider={notificationProvider}
             Layout={Layout}
             ReadyPage={ReadyPage}
@@ -40,7 +42,7 @@ function App() {
               },
             ]}
             routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            dataProvider={DataProvider("https://api.fake-rest.refine.dev")}
           />
         </RefineSnackbarProvider>
       </ThemeProvider>
