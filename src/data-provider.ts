@@ -29,6 +29,12 @@ export const dataProvider  = (apiUrl: string): DataProvider => ({
         return { data };
     },
 
+    update : async ({resource, variables}) => {
+        const url = `${apiUrl}/${resource}`;
+        const { data } = await axiosInstance.put(url, variables);
+        return { data };
+    },
+
     const generateFilters = (filters?: CrudFilters) => {
         const queryFilters: { [key: string]: string } = {};
       
